@@ -1,37 +1,41 @@
 from tkinter import*
 from datetime import datetime
 
+#quit the program
 def quit() :
     main_window.destroy()
-    
+
+#print the customers details 
 def print_customer_details():
-    #Global Variables
+    #global Variables
     global detail_count, total_entries
     detail_count = 0
-    #Creating column headings
+    #creating column headings
     Label(main_window, font=("Helvetica 12"), text="Reciept Number").grid(column=0, row=7)
     Label(main_window, font=("Helvetica 10"), text="Name").grid(column=1, row=7)
     Label(main_window, font=("Helvetica 10"), text="Items Hired").grid(column=2, row=7)
     Label(main_window, font=("Helvetica 10"), text="Amount Hired").grid(column=3, row=7)
     Label(main_window, font=("Helvetica 10"), text="Order Date").grid(column=4, row=7)
     Label(main_window, font=("Helvetica 10"), text="Return Date").grid(column=5, row=7)
-
+    #adding items in the list
     while detail_count < total_entries:
         Label(main_window, text=detail_count).grid(column=0, row=detail_count+8)
-        Label(main_window, text=(customer_details[detail_count][0])).grid(column=1, row=detail_count+8)
-        Label(main_window, text=(customer_details[detail_count][1])).grid(column=2, row=detail_count+8)
-        Label(main_window, text=(customer_details[detail_count][2])).grid(column=3, row=detail_count+8)
-        Label(main_window, text=(customer_details[detail_count][3])).grid(column=4, row=detail_count+8)
+        Label(main_window, text=(customer_detail[detail_count][0])).grid(column=1, row=detail_count+8)
+        Label(main_window, text=(customer_detail[detail_count][1])).grid(column=2, row=detail_count+8)
+        Label(main_window, text=(customer_detail[detail_count][2])).grid(column=3, row=detail_count+8)
+        Label(main_window, text=(customer_detail[detail_count][3])).grid(column=4, row=detail_count+8)
         detail_count =+ 1
-
+#checks vadility of inputs
 def check_inputs():
-    #Global Variables
+    #global Variables
     global detail_count, entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, total_entries
     input_check = 0 
+    #reset the "required" text
     Label(main_window, text="           ").grid(column=2, row=0)
     Label(main_window, text="           ").grid(column=2, row=1)
     Label(main_window, text="           ").grid(column=2, row=2)
     Label(main_window, text="           ").grid(column=2, row=3)
+    #checks if there is no input or an invalid input
     if len(entry_first_name.get()) == 0:
         Label(main_window, fg="red" ,text="Required")
         input_check = 1
@@ -54,13 +58,14 @@ def check_inputs():
     if len(entry_return_date.get()) == 0:
         Label(main_window, fg="red", text="Required")
         input_check = 1
-        
-    
 
+#add details to the customer detail list
 def append_details():
-    #Global Variables
+    #global Variables
     global detail_count, entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, total_entries
-    customer_details.append([entry_first_name.get(),entry_last_name.get(),entry_item_hire.get(),entry_amount_hire.get(),entry_order_date.get(),entry_order_date.get()])
+    #append the inputs
+    customer_detail.append([entry_first_name.get(),entry_last_name.get(),entry_item_hire.get(),entry_amount_hire.get(),entry_order_date.get(),entry_order_date.get()])
+    #clear input boxes
     entry_first_name.delete(0,'end')
     entry_last_name.delete(0,'end')
     entry_item_hire.delete(0,'end')
@@ -70,16 +75,15 @@ def append_details():
     total_entries += 1
 
 def setup():
-    #Global Variables
+    #global Variables
     global entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, total_entries
+    #creating the labels and input boxes for the shop 
     Label(main_window, font=("Helvetica 10"), text="First Name").grid(column=0,row=0,sticky=E)
     entry_first_name = Entry(main_window)
     entry_first_name.grid(column=1,row=0)
     Label(main_window, font=("Helvetica 10"), text="Last Name").grid(column=0,row=1,sticky=E)
     entry_last_name = Entry(main_window)
     entry_last_name.grid(column=1,row=1)
-    Button(main_window, text="Quit", command=quit)
-    Button(main_window, text="Append Details", command=check_inputs)
     Label(main_window, font=("Helvetica 10"), text="Items Hired").grid(column=0,row=2,sticky=E)
     entry_item_hire = Entry(main_window)
     entry_item_hire.grid(column=1,row=2)
@@ -93,12 +97,14 @@ def setup():
     entry_return_date = Entry(main_window)
     entry_return_date.grid(column=1,row=5)
     Label(main_window, font=("Helvetica 10"), text="Row #",)
+    Button(main_window, text="Quit", command=quit)
+    Button(main_window, text="Append Details", command=check_inputs)
     
 
 def main():
     #Global Variables
-    global main_window, total_entries
-    customer_details = []
+    global main_window, total_entries, customer_detail
+    customer_detail = []
     total_entries = 0
     #Creating GUI
     main_window =Tk()
