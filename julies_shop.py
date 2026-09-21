@@ -34,48 +34,53 @@ def check_inputs():
     global detail_count, entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, input_check, total_entries
     input_check = 0 
     #reset the "required" text
-    Label(main_window, text="           ").grid(column=2, row=0)
-    Label(main_window, text="           ").grid(column=2, row=1)
-    Label(main_window, text="           ").grid(column=2, row=2)
-    Label(main_window, text="           ").grid(column=2, row=3)
-    Label(main_window, text="           ").grid(column=2, row=4)
-    Label(main_window, text="           ").grid(column=2, row=5)
-#checks if there is no input or an invalid input
+    Label(main_window, text="           ", width=10).grid(column=2, row=0)
+    Label(main_window, text="           ", width=10).grid(column=2, row=1)
+    Label(main_window, text="           ", width=10).grid(column=2, row=2)
+    Label(main_window, text="           ", width=10).grid(column=2, row=3)
+    Label(main_window, text="           ", width=10).grid(column=2, row=4)
+    Label(main_window, text="           ", width=10).grid(column=2, row=5)
+    #checks if there is no input or an invalid input
     if len(entry_first_name.get()) == 0:
-        Label(main_window, fg="red" ,text="Required")
+        Label(main_window, fg="red" ,text="Required").grid(column=2, row=0)
         input_check = 1
-#checks if there is no input or an invalid input
+    #checks if there is no input or an invalid input
     if len(entry_last_name.get()) == 0:
-        Label(main_window, fg="red" ,text="Required")
-        input_check = 1 
-#checks if there is no input or an invalid input
+        Label(main_window, fg="red" ,text="Required").grid(column=2, row=1)
+        input_check = 1
+    if len(entry_last_name.get()) == 0:
+            Label(main_window, fg="red" ,text="Required").grid(column=2, row=1)
+            input_check = 1
+    #checks if there is no input or an invalid input
     if len(entry_item_hire.get()) == 0:
-        Label(main_window, fg="red" ,text="Required")
+        Label(main_window, fg="red" ,text="Required").grid(column=2, row=2)
         input_check = 1 
-#checks if there is no input, invalid input or less than 0
-    if len(entry_amount_hire.get().isdigit()):
+    #checks if there is no input, invalid input or less than 0
+    if (entry_amount_hire.get().isdigit()):
         if int(entry_amount_hire.get()) < 0:
-            Label(main_window, fg="red" ,text="Required")
+            Label(main_window, fg="red" ,text="Required").grid(column=2, row=3)
             input_check = 1
     else:
-        Label(main_window, fg="red" ,text="Required")
+        Label(main_window, fg="red" ,text="Required").grid(column=2, row=3)
         input_check = 1
-#checks if there is no input or an invalid input0 
+    #checks if there is no input or an invalid input
     if len(entry_order_date.get()) == 0:
-        Label(main_window, fg="red", text="Required")
+        Label(main_window, fg="red", text="Required").grid(column=2, row=4)
         input_check = 1
-#checks if there is no input or an invalid input
+    #checks if there is no input or an invalid input
     if len(entry_return_date.get()) == 0:
-        Label(main_window, fg="red", text="Required")
+        Label(main_window, fg="red", text="Required").grid(column=2, row=5)
         input_check = 1
+    if input_check == 0:
+        append_details()
 
 #add details to the customer detail list
 def append_details():
-#global variables
-    global detail_count, entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, total_entries
-#append the inputs
-    customer_detail.append([entry_first_name.get(),entry_last_name.get(),entry_item_hire.get(),entry_amount_hire.get(),entry_order_date.get(),entry_order_date.get()])
-#clear the input boxes
+    #global variables
+    global detail_count, entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, total_entries, full_name
+    #append the inputs
+    customer_detail.append([full_name.get(), entry_item_hire.get(), entry_amount_hire.get(), entry_order_date.get(), entry_order_date.get()])
+    #clear the input boxes
     entry_first_name.delete(0,'end')
     entry_last_name.delete(0,'end')
     entry_item_hire.delete(0,'end')
@@ -101,9 +106,16 @@ def delete_row():
     #reprint items
     print_customer_details()
 
+#create buttons and labels
 def setup():
     #global Variables
     global entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, total_entries, delete_item
+    Label(main_window, text="           ", width=10).grid(column=2, row=0)
+    Label(main_window, text="           ", width=10).grid(column=2, row=1)
+    Label(main_window, text="           ", width=10).grid(column=2, row=2)
+    Label(main_window, text="           ", width=10).grid(column=2, row=3)
+    Label(main_window, text="           ", width=10).grid(column=2, row=4)
+    Label(main_window, text="           ", width=10).grid(column=2, row=5)
     #creating the labels and input boxes for the shop 
     Label(main_window, font=("Helvetica 10"), text="First Name").grid(column=0,row=0,sticky=E)
     entry_first_name = Entry(main_window)
@@ -126,8 +138,10 @@ def setup():
     Label(main_window, font=("Helvetica 10"), text="Row (#)").grid(column=0, row=6)
     delete_item = Entry(main_window)
     delete_item.grid(column=1, row=6)
-    Button(main_window, text="Quit", command=quit)
-    Button(main_window, text="Append Details", command=check_inputs)
+    Button(main_window, text="Quit", command=quit, width=15).grid(column=3, row=0)
+    Button(main_window, text="Append Details", command=check_inputs, width=15).grid(column=3, row=1)
+    Button(main_window, text="Print Details", command=print_customer_details, width=15).grid(column=3, row=2)
+
     
 
 def main():
