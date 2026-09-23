@@ -20,13 +20,12 @@ def print_customer_details():
     #adding items in the list
     while detail_count < total_entries:
         Label(main_window, text=detail_count).grid(column=0, row=detail_count+8)
-        Label(main_window, text=(customer_detail[detail_count][0], " ", customer_detail[detail_count][1])).grid(column=1, row=detail_count+8)
+        Label(main_window, text=(customer_detail[detail_count][0] + " " + customer_detail[detail_count][1])).grid(column=1, row=detail_count+8)
         Label(main_window, text=(customer_detail[detail_count][2])).grid(column=2, row=detail_count+8)
         Label(main_window, text=(customer_detail[detail_count][3])).grid(column=3, row=detail_count+8)
         Label(main_window, text=(customer_detail[detail_count][4])).grid(column=4, row=detail_count+8)
         Label(main_window, text=(customer_detail[detail_count][5])).grid(column=5, row=detail_count+8)
-        Label(main_window, text=(customer_detail[detail_count][6])).grid(column=6, row=detail_count+8)
-        detail_count =+ 1
+        detail_count += 1
         
 #checks vadility of inputs
 def check_inputs():
@@ -77,9 +76,9 @@ def check_inputs():
 #add details to the customer detail list
 def append_details():
     #global variables
-    global detail_count, entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, total_entries, full_name
+    global detail_count, entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, total_entries
     #append the inputs
-    customer_detail.append(entry_first_name.get(), entry_last_name, entry_item_hire.get(), entry_amount_hire.get(), entry_order_date.get(), entry_order_date.get())
+    customer_detail.append([entry_first_name.get(), entry_last_name.get(), entry_item_hire.get(), entry_amount_hire.get(), entry_order_date.get(), entry_order_date.get()])
     #clear the input boxes
     entry_first_name.delete(0,'end')
     entry_last_name.delete(0,'end')
