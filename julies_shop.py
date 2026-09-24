@@ -40,16 +40,13 @@ def check_inputs():
     Label(main_window, text="           ", width=10).grid(column=2, row=4)
     Label(main_window, text="           ", width=10).grid(column=2, row=5)
     #checks if there is no input or an invalid input
-    if len(entry_first_name.get()) == 0:
+    if len(entry_first_name.get()) == 0 or entry_first_name.get().isdigit():
         Label(main_window, fg="red" ,text="Required").grid(column=2, row=0)
         input_check = 1
     #checks if there is no input or an invalid input
-    if len(entry_last_name.get()) == 0:
+    if len(entry_last_name.get()) == 0 or entry_last_name.get().isdigit():
         Label(main_window, fg="red" ,text="Required").grid(column=2, row=1)
         input_check = 1
-    if len(entry_last_name.get()) == 0:
-            Label(main_window, fg="red" ,text="Required").grid(column=2, row=1)
-            input_check = 1
     #checks if there is no input or an invalid input
     if len(entry_item_hire.get()) == 0:
         Label(main_window, fg="red" ,text="Required").grid(column=2, row=2)
