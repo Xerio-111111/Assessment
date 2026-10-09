@@ -1,5 +1,6 @@
 from tkinter import*
 from datetime import datetime
+from tkinter import ttk
 
 #quit the program
 def quit() :
@@ -108,7 +109,7 @@ def delete_row():
 #create buttons and labels
 def setup():
     #global Variables
-    global entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, total_entries, delete_item
+    global entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, total_entries, delete_item, hiring_options
     Label(main_window, text="           ", width=10, bg="light blue").grid(column=2, row=0)
     Label(main_window, text="           ", width=10, bg="light blue").grid(column=2, row=1)
     Label(main_window, text="           ", width=10, bg="light blue").grid(column=2, row=2)
@@ -123,7 +124,7 @@ def setup():
     entry_last_name = Entry(main_window)
     entry_last_name.grid(column=1,row=1)
     Label(main_window, font=("Helvetica 10"), text="Items Hired", bg="light blue").grid(column=0,row=2,sticky=E)
-    entry_item_hire = Entry(main_window)
+    entry_item_hire = ttk.Combobox(main_window, values=hiring_options, state="readonly", width=17)
     entry_item_hire.grid(column=1,row=2)
     Label(main_window, font=("Helvetica 10"), text="Amount Hired", bg="light blue").grid(column=0,row=3,sticky=E)
     entry_amount_hire = Entry(main_window)
@@ -137,10 +138,11 @@ def setup():
     Button(main_window, text="Quit", command=quit, width=15).grid(column=3, row=0)
     Button(main_window, text="Append Details", command=check_inputs, width=15).grid(column=3, row=1)
     Button(main_window, text="Print Details", command=print_customer_details, width=15).grid(column=3, row=2)
-    Label(main_window, font=("Helvetica 10"), width=15, text="Row(#)", bg="light blue").grid(column=3, row=4, sticky=E)
-    delete_item = Entry(main_window, width=15)
-    delete_item.grid(column=3, row=5)
     Button(main_window, text="Delete Row", command=delete_row, width=15).grid(column=3, row=3)
+    Label(main_window, font=("Helvetica 10"), width=15, text="Row(#)", bg="light blue").grid(column=3, row=4, sticky=E)
+    delete_item = Entry(main_window, width=17)
+    delete_item.grid(column=3, row=5)
+    
 
     
 
@@ -154,6 +156,7 @@ def main():
     #Creating GUI
     main_window =Tk()
     setup()
+    main_window.title("Julie's Hire Shop")
     main_window.configure(bg="light blue")
     main_window.mainloop()
 main()
