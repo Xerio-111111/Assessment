@@ -12,7 +12,7 @@ def print_customer_details():
     detail_count = 0
     #creating column headings
     Label(main_window, font=("Helvetica 12"), text="Customer ID").grid(column=0, row=7)
-    Label(main_window, font=("Helvetica 10"), text="Name").grid(column=1, row=7)
+    Label(main_window, font=("Helvetica 10"), text="Full Name").grid(column=1, row=7)
     Label(main_window, font=("Helvetica 10"), text="Items Hired").grid(column=2, row=7)
     Label(main_window, font=("Helvetica 10"), text="Amount Hired").grid(column=3, row=7)
     Label(main_window, font=("Helvetica 10"), text="Order Date").grid(column=4, row=7)
@@ -20,65 +20,62 @@ def print_customer_details():
     #adding items in the list
     while detail_count < total_entries:
         Label(main_window, text=detail_count).grid(column=0, row=detail_count+8)
-        Label(main_window, text=(customer_detail[detail_count][0] + " " + customer_detail[detail_count][1])).grid(column=1, row=detail_count+8)
-        Label(main_window, text=(customer_detail[detail_count][2])).grid(column=2, row=detail_count+8)
-        Label(main_window, text=(customer_detail[detail_count][3])).grid(column=3, row=detail_count+8)
-        Label(main_window, text=(customer_detail[detail_count][4])).grid(column=4, row=detail_count+8)
-        Label(main_window, text=(customer_detail[detail_count][5])).grid(column=5, row=detail_count+8)
+        Label(main_window, text=(customer_detail[detail_count][0] + " " + customer_detail[detail_count][1])).grid(column=1, row=detail_count+8, sticky="EW")
+        Label(main_window, text=(customer_detail[detail_count][2])).grid(column=2, row=detail_count+8, sticky="EW")
+        Label(main_window, text=(customer_detail[detail_count][3])).grid(column=3, row=detail_count+8, sticky="EW")
+        Label(main_window, text=(customer_detail[detail_count][4])).grid(column=4, row=detail_count+8, sticky="EW")
+        Label(main_window, text=(customer_detail[detail_count][5])).grid(column=5, row=detail_count+8, sticky="EW")
         detail_count += 1
         
 #checks vadility of inputs
 def check_inputs():
-    #global variables
-    global detail_count, entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, input_check, total_entries
-    input_check = 0 
-    #reset the "required" text
-    Label(main_window, text="           ", width=10).grid(column=2, row=0)
-    Label(main_window, text="           ", width=10).grid(column=2, row=1)
-    Label(main_window, text="           ", width=10).grid(column=2, row=2)
-    Label(main_window, text="           ", width=10).grid(column=2, row=3)
-    Label(main_window, text="           ", width=10).grid(column=2, row=4)
-    Label(main_window, text="           ", width=10).grid(column=2, row=5)
-    #checks if there is no input or an invalid input
-    if len(entry_first_name.get()) == 0:
-        Label(main_window, fg="red" ,text="Required").grid(column=2, row=0)
-        input_check = 1
-    #checks if there is no input or an invalid input
-    if len(entry_last_name.get()) == 0:
-        Label(main_window, fg="red" ,text="Required").grid(column=2, row=1)
-        input_check = 1
-    if len(entry_last_name.get()) == 0:
+        #global variables
+        global detail_count, entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, input_check, total_entries
+        input_check = 0 
+        #reset the "required" text
+        Label(main_window, text="           ", width=10).grid(column=2, row=0)
+        Label(main_window, text="           ", width=10).grid(column=2, row=1)
+        Label(main_window, text="           ", width=10).grid(column=2, row=2)
+        Label(main_window, text="           ", width=10).grid(column=2, row=3)
+        Label(main_window, text="           ", width=10).grid(column=2, row=4)
+        Label(main_window, text="           ", width=10).grid(column=2, row=5)
+        #checks if there is no input or an invalid input
+        if len(entry_first_name.get()) == 0 or (entry_first_name.get().isdigit()):
+            Label(main_window, fg="red" ,text="Required").grid(column=2, row=0)
+            input_check = 1
+        #checks if there is no input or an invalid input
+        if len(entry_last_name.get()) == 0 or (entry_last_name.get().isdigit()):
             Label(main_window, fg="red" ,text="Required").grid(column=2, row=1)
             input_check = 1
-    #checks if there is no input or an invalid input
-    if len(entry_item_hire.get()) == 0:
-        Label(main_window, fg="red" ,text="Required").grid(column=2, row=2)
-        input_check = 1 
-    #checks if there is no input, invalid input or less than 0
-    if (entry_amount_hire.get().isdigit()):
-        if int(entry_amount_hire.get()) < 0:
+        #checks if there is no input or an invalid input
+        if len(entry_item_hire.get()) == 0 or (entry_item_hire.get().isdigit()):
+            Label(main_window, fg="red" ,text="Required").grid(column=2, row=2)
+            input_check = 1  
+        #checks if there is no input, invalid input or less than 0
+        if (entry_amount_hire.get().isdigit()):
+            if int(entry_amount_hire.get()) < 0:
+                Label(main_window, fg="red" ,text="Required").grid(column=2, row=3)
+                input_check = 1
+        else:
             Label(main_window, fg="red" ,text="Required").grid(column=2, row=3)
             input_check = 1
-    else:
-        Label(main_window, fg="red" ,text="Required").grid(column=2, row=3)
-        input_check = 1
-    #checks if there is no input or an invalid input
-    if len(entry_order_date.get()) == 0:
-        Label(main_window, fg="red", text="Required").grid(column=2, row=4)
-        input_check = 1
-    #checks if there is no input or an invalid input
-    if len(entry_return_date.get()) == 0:
-        Label(main_window, fg="red", text="Required").grid(column=2, row=5)
-        input_check = 1
-    if input_check == 0:
-        append_details()
+        #checks if there is no input or an invalid input
+        if len(entry_order_date.get()) == 0:
+            Label(main_window, fg="red", text="Required").grid(column=2, row=4)
+            input_check = 1
+        #checks if there is no input or an invalid input
+        if len(entry_return_date.get()) == 0:
+            Label(main_window, fg="red", text="Required").grid(column=2, row=5)
+            input_check = 1
+        if input_check == 0:
+            append_details()
 
 #add details to the customer detail list
 def append_details():
     #global variables
     global detail_count, entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, total_entries
     #append the inputs
-    customer_detail.append([entry_first_name.get(), entry_last_name.get(), entry_item_hire.get(), entry_amount_hire.get(), entry_order_date.get(), entry_order_date.get()])
+    customer_detail.append([entry_first_name.get(), entry_last_name.get(), entry_item_hire.get(), entry_amount_hire.get(), entry_order_date.get(), entry_return_date.get()])
     #clear the input boxes
     entry_first_name.delete(0,'end')
     entry_last_name.delete(0,'end')
@@ -140,6 +137,7 @@ def setup():
     Button(main_window, text="Quit", command=quit, width=15).grid(column=3, row=0)
     Button(main_window, text="Append Details", command=check_inputs, width=15).grid(column=3, row=1)
     Button(main_window, text="Print Details", command=print_customer_details, width=15).grid(column=3, row=2)
+    Button(main_window, text="Delete Row", command=delete_row, width=15).grid(column=3, row=3)
 
     
 
