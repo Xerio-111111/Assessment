@@ -20,11 +20,11 @@ def print_customer_details():
     #adding items in the list
     while detail_count < total_entries:
         Label(main_window, text=detail_count).grid(column=0, row=detail_count+8)
-        Label(main_window, text=(customer_detail[detail_count][0] + " " + customer_detail[detail_count][1])).grid(column=1, row=detail_count+8, sticky="EW")
-        Label(main_window, text=(customer_detail[detail_count][2])).grid(column=2, row=detail_count+8, sticky="EW")
-        Label(main_window, text=(customer_detail[detail_count][3])).grid(column=3, row=detail_count+8, sticky="EW")
-        Label(main_window, text=(customer_detail[detail_count][4])).grid(column=4, row=detail_count+8, sticky="EW")
-        Label(main_window, text=(customer_detail[detail_count][5])).grid(column=5, row=detail_count+8, sticky="EW")
+        Label(main_window, text=(customer_detail[detail_count][0] + " " + customer_detail[detail_count][1])).grid(column=1, row=detail_count+8, sticky=EW)
+        Label(main_window, text=(customer_detail[detail_count][2])).grid(column=2, row=detail_count+8, sticky=EW)
+        Label(main_window, text=(customer_detail[detail_count][3])).grid(column=3, row=detail_count+8, sticky=EW)
+        Label(main_window, text=(customer_detail[detail_count][4])).grid(column=4, row=detail_count+8, sticky=EW)
+        Label(main_window, text=(customer_detail[detail_count][5])).grid(column=5, row=detail_count+8, sticky=EW)
         detail_count += 1
         
 #checks vadility of inputs
@@ -41,26 +41,26 @@ def check_inputs():
     Label(main_window, text="           ", width=10).grid(column=2, row=5)
     #checks if there is no input or an invalid input
     if len(entry_first_name.get()) == 0:
-        Label(main_window, fg="red" ,text="Invalid").grid(column=2, row=0)
+        Label(main_window, fg="red", text="Invalid").grid(column=2, row=0)
         input_check = 1
     #checks if there is no input or an invalid input
     if len(entry_last_name.get()) == 0:
-        Label(main_window, fg="red" ,text="Invalid").grid(column=2, row=1)
+        Label(main_window, fg="red", text="Invalid").grid(column=2, row=1)
         input_check = 1
     if len(entry_last_name.get()) == 0:
-            Label(main_window, fg="red" ,text="Invalid").grid(column=2, row=1)
+            Label(main_window, fg="red", text="Invalid").grid(column=2, row=1)
             input_check = 1
     #checks if there is no input or an invalid input
     if len(entry_item_hire.get()) == 0:
-        Label(main_window, fg="red" ,text="Invalid").grid(column=2, row=2)
+        Label(main_window, fg="red", text="Invalid").grid(column=2, row=2)
         input_check = 1 
     #checks if there is no input, invalid input or less than 0
     if (entry_amount_hire.get().isdigit()):
         if int(entry_amount_hire.get()) < 0:
-            Label(main_window, fg="red" ,text="Invalid").grid(column=2, row=3)
+            Label(main_window, fg="red", text="Invalid").grid(column=2, row=3)
             input_check = 1
     else:
-        Label(main_window, fg="red" ,text="Invalid").grid(column=2, row=3)
+        Label(main_window, fg="red", text="Invalid").grid(column=2, row=3)
         input_check = 1
     #checks if there is no input or an invalid input
     if len(entry_order_date.get()) == 0:
@@ -134,19 +134,20 @@ def setup():
     Label(main_window, font=("Helvetica 10"), text="Return Date", bg="light blue").grid(column=0,row=5,sticky=E)
     entry_return_date = Entry(main_window)
     entry_return_date.grid(column=1,row=5)
-    Label(main_window, font=("Helvetica 10"), width=15, text="Row(#)", bg="light blue").grid(column=0, row=6, sticky=E)
-    delete_item = Entry(main_window)
-    delete_item.grid(column=1, row=6)
     Button(main_window, text="Quit", command=quit, width=15).grid(column=3, row=0)
     Button(main_window, text="Append Details", command=check_inputs, width=15).grid(column=3, row=1)
     Button(main_window, text="Print Details", command=print_customer_details, width=15).grid(column=3, row=2)
+    Label(main_window, font=("Helvetica 10"), width=15, text="Row(#)", bg="light blue").grid(column=3, row=4, sticky=E)
+    delete_item = Entry(main_window, width=15)
+    delete_item.grid(column=3, row=5)
     Button(main_window, text="Delete Row", command=delete_row, width=15).grid(column=3, row=3)
 
     
 
 def main():
     #Global Variables
-    global main_window, total_entries, customer_detail, detail_count
+    global main_window, total_entries, customer_detail, detail_count, hiring_options
+    hiring_options = ["Table", "Chair", "Marquee", "Cutlery", "Plates", "Cups", "Glasses", "Stage", "linen"]
     detail_count = 0
     customer_detail = []
     total_entries = 0
