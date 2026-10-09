@@ -134,18 +134,20 @@ def setup():
     Label(main_window, font=("Helvetica 10"), text="Return Date").grid(column=0,row=5,sticky=E)
     entry_return_date = Entry(main_window)
     entry_return_date.grid(column=1,row=5)
-    Label(main_window, font=("Helvetica 10"), width=15, text="Row (#)").grid(column=3, row=4)
+    Label(main_window, font=("Helvetica 10"), width=15, text="Row(#)").grid(column=0, row=6, sticky=E)
     delete_item = Entry(main_window)
     delete_item.grid(column=1, row=6)
     Button(main_window, text="Quit", command=quit, width=15).grid(column=3, row=0)
     Button(main_window, text="Append Details", command=check_inputs, width=15).grid(column=3, row=1)
     Button(main_window, text="Print Details", command=print_customer_details, width=15).grid(column=3, row=2)
+    Button(main_window, text="Delete Row", command=delete_row, width=15).grid(column=3, row=3)
 
     
 
 def main():
     #Global Variables
-    global main_window, total_entries, customer_detail, full_name
+    global main_window, total_entries, customer_detail, detail_count
+    detail_count = 0
     customer_detail = []
     total_entries = 0
     #Creating GUI
