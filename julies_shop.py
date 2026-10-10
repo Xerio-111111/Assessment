@@ -1,6 +1,6 @@
 from tkinter import*
-from datetime import datetime
 from tkinter import ttk
+from tkcalendar import DateEntry
 
 #quit the program
 def quit() :
@@ -12,20 +12,20 @@ def print_customer_details():
     global detail_count, total_entries
     detail_count = 0
     #creating column headings
-    Label(main_window, font=("Helvetica 12"), text="Customer ID").grid(column=0, row=7)
-    Label(main_window, font=("Helvetica 10"), text="Full Name").grid(column=1, row=7)
-    Label(main_window, font=("Helvetica 10"), text="Items Hired").grid(column=2, row=7)
-    Label(main_window, font=("Helvetica 10"), text="Amount Hired").grid(column=3, row=7)
-    Label(main_window, font=("Helvetica 10"), text="Order Date").grid(column=4, row=7)
-    Label(main_window, font=("Helvetica 10"), text="Return Date").grid(column=5, row=7)
+    Label(main_window, font=("Helvetica 12"), text="Customer ID", bg="light blue").grid(column=0, row=7)
+    Label(main_window, font=("Helvetica 10"), text="Full Name", bg="light blue").grid(column=1, row=7)
+    Label(main_window, font=("Helvetica 10"), text="Items Hired", bg="light blue").grid(column=2, row=7)
+    Label(main_window, font=("Helvetica 10"), text="Amount Hired", bg="light blue").grid(column=3, row=7)
+    Label(main_window, font=("Helvetica 10"), text="Order Date", bg="light blue").grid(column=4, row=7)
+    Label(main_window, font=("Helvetica 10"), text="Return Date", bg="light blue").grid(column=5, row=7)
     #adding items in the list
     while detail_count < total_entries:
-        Label(main_window, text=detail_count).grid(column=0, row=detail_count+8)
-        Label(main_window, text=(customer_detail[detail_count][0] + " " + customer_detail[detail_count][1])).grid(column=1, row=detail_count+8, sticky=EW)
-        Label(main_window, text=(customer_detail[detail_count][2])).grid(column=2, row=detail_count+8, sticky=EW)
-        Label(main_window, text=(customer_detail[detail_count][3])).grid(column=3, row=detail_count+8, sticky=EW)
-        Label(main_window, text=(customer_detail[detail_count][4])).grid(column=4, row=detail_count+8, sticky=EW)
-        Label(main_window, text=(customer_detail[detail_count][5])).grid(column=5, row=detail_count+8, sticky=EW)
+        Label(main_window, text=detail_count, bg="light blue").grid(column=0, row=detail_count+8)
+        Label(main_window, text=(customer_detail[detail_count][0] + " " + customer_detail[detail_count][1]), bg="light blue").grid(column=1, row=detail_count+8, sticky=EW)
+        Label(main_window, text=(customer_detail[detail_count][2]), bg="light blue").grid(column=2, row=detail_count+8, sticky=EW)
+        Label(main_window, text=(customer_detail[detail_count][3]), bg="light blue").grid(column=3, row=detail_count+8, sticky=EW)
+        Label(main_window, text=(customer_detail[detail_count][4]), bg="light blue").grid(column=4, row=detail_count+8, sticky=EW)
+        Label(main_window, text=(customer_detail[detail_count][5]), bg="light blue").grid(column=5, row=detail_count+8, sticky=EW)
         detail_count += 1
         
 #checks vadility of inputs
@@ -34,42 +34,42 @@ def check_inputs():
     global detail_count, entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, input_check, total_entries
     input_check = 0 
     #reset the "required" text
-    Label(main_window, text="           ", width=10).grid(column=2, row=0)
-    Label(main_window, text="           ", width=10).grid(column=2, row=1)
-    Label(main_window, text="           ", width=10).grid(column=2, row=2)
-    Label(main_window, text="           ", width=10).grid(column=2, row=3)
-    Label(main_window, text="           ", width=10).grid(column=2, row=4)
-    Label(main_window, text="           ", width=10).grid(column=2, row=5)
+    Label(main_window, text="           ", width=15, bg="light blue").grid(column=2, row=0)
+    Label(main_window, text="           ", width=15, bg="light blue").grid(column=2, row=1)
+    Label(main_window, text="           ", width=15, bg="light blue").grid(column=2, row=2)
+    Label(main_window, text="           ", width=15, bg="light blue").grid(column=2, row=3)
+    Label(main_window, text="           ", width=15, bg="light blue").grid(column=2, row=4)
+    Label(main_window, text="           ", width=15, bg="light blue").grid(column=2, row=5)
     #checks if there is no input or an invalid input
     if len(entry_first_name.get()) == 0:
-        Label(main_window, fg="red", text="Invalid").grid(column=2, row=0)
+        Label(main_window, fg="red", text="Invalid", bg="light blue").grid(column=2, row=0)
         input_check = 1
     #checks if there is no input or an invalid input
     if len(entry_last_name.get()) == 0:
-        Label(main_window, fg="red", text="Invalid").grid(column=2, row=1)
+        Label(main_window, fg="red", text="Invalid", bg="light blue").grid(column=2, row=1)
         input_check = 1
     if len(entry_last_name.get()) == 0:
-            Label(main_window, fg="red", text="Invalid").grid(column=2, row=1)
+            Label(main_window, fg="red", text="Invalid", bg="light blue").grid(column=2, row=1)
             input_check = 1
     #checks if there is no input or an invalid input
     if len(entry_item_hire.get()) == 0:
-        Label(main_window, fg="red", text="Invalid").grid(column=2, row=2)
+        Label(main_window, fg="red", text="Invalid", bg="light blue").grid(column=2, row=2)
         input_check = 1 
     #checks if there is no input, invalid input or less than 0
     if (entry_amount_hire.get().isdigit()):
         if int(entry_amount_hire.get()) < 0:
-            Label(main_window, fg="red", text="Invalid").grid(column=2, row=3)
+            Label(main_window, fg="red", text="Invalid", bg="light blue").grid(column=2, row=3)
             input_check = 1
     else:
-        Label(main_window, fg="red", text="Invalid").grid(column=2, row=3)
+        Label(main_window, fg="red", text="Invalid", bg="light blue").grid(column=2, row=3)
         input_check = 1
     #checks if there is no input or an invalid input
     if len(entry_order_date.get()) == 0:
-        Label(main_window, fg="red", text="Invalid").grid(column=2, row=4)
+        Label(main_window, fg="red", text="Invalid", bg="light blue").grid(column=2, row=4)
         input_check = 1
     #checks if there is no input or an invalid input
-    if len(entry_return_date.get()) == 0:
-        Label(main_window, fg="red", text="Invalid").grid(column=2, row=5)
+    if entry_return_date.get() < entry_order_date.get():
+        Label(main_window, fg="red", text="Invalid", bg="light blue").grid(column=2, row=5)
         input_check = 1
     if input_check == 0:
         append_details()
@@ -97,12 +97,12 @@ def delete_row():
     total_entries = total_entries - 1
     delete_item.delete(0, 'end')
     #clear the deleted item
-    Label(main_window, text="           ", bg="light blue").grid(column=0, row=detail_count+7)
-    Label(main_window, text="           ", bg="light blue").grid(column=1, row=detail_count+7)
-    Label(main_window, text="           ", bg="light blue").grid(column=2, row=detail_count+7)
-    Label(main_window, text="           ", bg="light blue").grid(column=3, row=detail_count+7)
-    Label(main_window, text="           ", bg="light blue").grid(column=4, row=detail_count+7)
-    Label(main_window, text="           ", bg="light blue").grid(column=5, row=detail_count+7)
+    Label(main_window, text="           ", bg="light blue").grid(column=0, row=detail_count+7, sticky=EW)
+    Label(main_window, text="           ", bg="light blue").grid(column=1, row=detail_count+7, sticky=EW)
+    Label(main_window, text="           ", bg="light blue").grid(column=2, row=detail_count+7, sticky=EW)
+    Label(main_window, text="           ", bg="light blue").grid(column=3, row=detail_count+7, sticky=EW)
+    Label(main_window, text="           ", bg="light blue").grid(column=4, row=detail_count+7, sticky=EW)
+    Label(main_window, text="           ", bg="light blue").grid(column=5, row=detail_count+7, sticky=EW)
     #reprint items
     print_customer_details()
 
@@ -110,12 +110,12 @@ def delete_row():
 def setup():
     #global Variables
     global entry_first_name, entry_last_name, entry_item_hire, entry_amount_hire, entry_order_date, entry_return_date, total_entries, delete_item, hiring_options
-    Label(main_window, text="           ", width=10, bg="light blue").grid(column=2, row=0)
-    Label(main_window, text="           ", width=10, bg="light blue").grid(column=2, row=1)
-    Label(main_window, text="           ", width=10, bg="light blue").grid(column=2, row=2)
-    Label(main_window, text="           ", width=10, bg="light blue").grid(column=2, row=3)
-    Label(main_window, text="           ", width=10, bg="light blue").grid(column=2, row=4)
-    Label(main_window, text="           ", width=10, bg="light blue").grid(column=2, row=5)
+    Label(main_window, text="           ", width=15, bg="light blue").grid(column=2, row=0)
+    Label(main_window, text="           ", width=15, bg="light blue").grid(column=2, row=1)
+    Label(main_window, text="           ", width=15, bg="light blue").grid(column=2, row=2)
+    Label(main_window, text="           ", width=15, bg="light blue").grid(column=2, row=3)
+    Label(main_window, text="           ", width=15, bg="light blue").grid(column=2, row=4)
+    Label(main_window, text="           ", width=15, bg="light blue").grid(column=2, row=5)
     #creating the labels and input boxes for the shop 
     Label(main_window, font=("Helvetica 10"), text="First Name", bg="light blue").grid(column=0,row=0,sticky=E)
     entry_first_name = Entry(main_window)
@@ -130,17 +130,17 @@ def setup():
     entry_amount_hire = Entry(main_window)
     entry_amount_hire.grid(column=1,row=3)
     Label(main_window, font=("Helvetica 10"), text="Order Date", bg="light blue").grid(column=0,row=4,sticky=E)
-    entry_order_date = Entry(main_window)
+    entry_order_date = DateEntry(main_window, width=17, background="light blue", borderwidth=2)
     entry_order_date.grid(column=1,row=4)
     Label(main_window, font=("Helvetica 10"), text="Return Date", bg="light blue").grid(column=0,row=5,sticky=E)
-    entry_return_date = Entry(main_window)
+    entry_return_date = DateEntry(main_window, width=17, background="light blue", borderwidth=2)
     entry_return_date.grid(column=1,row=5)
     Button(main_window, text="Quit", command=quit, width=15).grid(column=3, row=0)
     Button(main_window, text="Append Details", command=check_inputs, width=15).grid(column=3, row=1)
     Button(main_window, text="Print Details", command=print_customer_details, width=15).grid(column=3, row=2)
     Button(main_window, text="Delete Row", command=delete_row, width=15).grid(column=3, row=3)
     Label(main_window, font=("Helvetica 10"), width=15, text="Row(#)", bg="light blue").grid(column=3, row=4, sticky=E)
-    delete_item = Entry(main_window, width=17)
+    delete_item = Entry(main_window, width=15)
     delete_item.grid(column=3, row=5)
     
 
